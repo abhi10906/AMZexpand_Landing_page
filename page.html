@@ -1,0 +1,2514 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMZexpand — We Do Not Win Unless You Do</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── RESET ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      :root {
+        --orange: #e8800a;
+        --orange-dark: #c26100;
+        --orange-light: #f5a623;
+        --dark: #0d1119;
+        --dark-2: #151a26;
+        --dark-3: #1e2535;
+        --cream: #f5f3ee;
+        --cream-2: #ede9e0;
+        --white: #ffffff;
+        --text-main: #0d1119;
+        --text-muted: #5a5f6e;
+        --text-light: rgba(255, 255, 255, 0.65);
+        --border: rgba(0, 0, 0, 0.08);
+        --border-light: rgba(255, 255, 255, 0.08);
+      }
+
+      body {
+        font-family: "DM Sans", system-ui, sans-serif;
+        background: var(--dark);
+        color: var(--white);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      /* ── HEADER ── */
+      .hdr {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        padding: 0 40px;
+        background: transparent;
+        border-bottom: 1px solid transparent;
+        transition:
+          background 0.3s,
+          border-color 0.3s,
+          backdrop-filter 0.3s;
+      }
+      .hdr.scrolled {
+        background: rgba(13, 17, 25, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom-color: var(--border-light);
+      }
+      .hdr-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .hdr-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 24px;
+        letter-spacing: 0.04em;
+        color: var(--white);
+        text-decoration: none;
+        display: flex;
+        align-items: baseline;
+        gap: 2px;
+      }
+      .hdr-logo .amz {
+        font-size: 28px;
+        color: var(--white);
+      }
+      .hdr-logo .expand {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.55);
+        letter-spacing: 0.12em;
+      }
+      .hdr-nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .hdr-link {
+        font-size: 14px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        padding: 8px 14px;
+        border-radius: 6px;
+        transition: color 0.15s;
+      }
+      .hdr-link:hover {
+        color: var(--white);
+      }
+      .hdr-cta {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 20px;
+        background: var(--orange);
+        color: var(--white);
+        font-size: 14px;
+        font-weight: 700;
+        border-radius: 100px;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.18s;
+      }
+      .hdr-cta:hover {
+        background: var(--orange-dark);
+      }
+
+      /* ── SECTION 1: HERO ── */
+      .s1 {
+        min-height: 100vh;
+        background: var(--dark);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 100px 20px 60px;
+        text-align: center;
+      }
+
+      /* radial glow behind */
+      .s1::before {
+        content: "";
+        position: absolute;
+        top: -10%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 600px;
+        background: radial-gradient(
+          ellipse,
+          rgba(232, 128, 10, 0.12) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      /* wavy dark lines background */
+      .s1-bg-lines {
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(
+          -20deg,
+          transparent,
+          transparent 40px,
+          rgba(255, 255, 255, 0.012) 40px,
+          rgba(255, 255, 255, 0.012) 41px
+        );
+        pointer-events: none;
+      }
+
+      .s1-inner {
+        max-width: 780px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .s1-headline {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(38px, 6vw, 68px);
+        font-weight: 400;
+        line-height: 1.05;
+        letter-spacing: 0.02em;
+        color: var(--white);
+        margin-bottom: 20px;
+      }
+      .s1-headline .money {
+        color: var(--orange);
+      }
+
+      .s1-sub {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.62);
+        max-width: 520px;
+        margin-bottom: 36px;
+      }
+
+      /* video thumbnail */
+      .s1-vsl-wrap {
+        width: 100%;
+        max-width: 680px;
+        position: relative;
+        margin-bottom: 32px;
+      }
+
+      /* "See It In Action" annotation */
+      .s1-annotation {
+        position: absolute;
+        top: -36px;
+        right: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
+        z-index: 10;
+      }
+      .s1-annotation-text {
+        font-family: "DM Sans", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: #f2d245;
+        font-style: italic;
+        transform: rotate(-4deg);
+      }
+      .s1-annotation svg {
+        transform: scaleX(-1) rotate(20deg);
+      }
+
+      .s1-thumb {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: var(--orange);
+        border-radius: 12px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      /* orange chart graphic inside thumb */
+      .s1-thumb-chart {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        overflow: hidden;
+      }
+      .s1-thumb-chart svg {
+        width: 91%;
+        height: 144%;
+        opacity: 0.85;
+      }
+
+      /* "IN 90 DAYS" text on thumb */
+      .s1-thumb-text {
+        position: absolute;
+        bottom: 157px;
+        left: 231px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(32px, 6vw, 60px);
+        color: var(--white);
+        letter-spacing: 0.04em;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .s1-thumb-text .play-inline {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 2px;
+      }
+      .s1-thumb-text .play-inline svg {
+        width: 14px;
+        height: 14px;
+        fill: var(--dark);
+        margin-left: 2px;
+      }
+
+      /* AMZ watermark on thumb */
+      .s1-thumb-watermark {
+        position: absolute;
+        top: 14px;
+        right: 20px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.3);
+        letter-spacing: 0.06em;
+      }
+
+      /* KPI chip */
+      .s1-kpi {
+        position: absolute;
+        bottom: 17px;
+        left: -69px;
+        background: rgba(20, 25, 38, 0.95);
+        border: 1px solid rgba(232, 128, 10, 0.25);
+        border-radius: 12px;
+        padding: 12px 16px;
+        min-width: 160px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      }
+      .s1-kpi-recovered {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 8px 18px;
+
+        color: #f2d245;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-transform: none;
+
+        border: 1px solid rgba(242, 210, 69, 0.25);
+        border-radius: 14px;
+
+        background: rgba(242, 210, 69, 0.08);
+
+        width: fit-content;
+        margin: 0 auto 12px;
+      }
+
+      .s1-kpi-recovered::before {
+        content: "↑";
+      }
+      .s1-kpi-value {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 32px;
+        color: #f2d245;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .s1-kpi-label {
+        font-size: 9px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        line-height: 1.4;
+      }
+
+      .s1-scarcity {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--orange);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .s1-scarcity::before {
+        content: "•";
+        font-size: 10px;
+      }
+
+      .s1-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--orange);
+        color: var(--white);
+        font-size: 17px;
+        font-weight: 700;
+        padding: 18px 40px;
+        border-radius: 100px;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 6px 28px rgba(232, 128, 10, 0.4);
+        transition:
+          background 0.18s,
+          transform 0.18s;
+        margin-bottom: 20px;
+      }
+      .s1-cta:hover {
+        background: var(--orange-dark);
+        transform: translateY(-2px);
+      }
+
+      .s1-trust {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .s1-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        font-size: 13px;
+        font-weight: 500;
+
+        color: rgba(255, 255, 255, 0.75);
+        letter-spacing: 0.02em;
+
+        padding: 8px 16px;
+
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+      }
+
+      .s1-trust-item::before {
+        content: "✓";
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 600;
+      }
+
+      .s1-sep {
+        display: none;
+      }
+
+      /* ── SECTION 2: PROOF STAT ── */
+      .s2 {
+        background: var(--white);
+        padding: 80px 20px 60px;
+        text-align: center;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .s2-inner {
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      /* Amazon logo SVG-style wordmark */
+      .s2-amazon-logo {
+        margin-bottom: 28px;
+        display: flex;
+        justify-content: center;
+      }
+      .s2-amazon-logo svg {
+        height: 28px;
+        width: auto;
+      }
+
+      .s2-lead {
+        font-size: 17px;
+        font-weight: 400;
+        color: #5a5f6e;
+        line-height: 1.6;
+        margin-bottom: 8px;
+      }
+      .s2-lead strong {
+        font-weight: 700;
+        color: var(--text-main);
+      }
+
+      .s2-number {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(72px, 14vw, 130px);
+        font-weight: 400;
+        color: var(--orange);
+        line-height: 1;
+        display: block;
+        margin: 8px 0 12px;
+      }
+
+      .s2-trail {
+        font-size: 17px;
+        color: #5a5f6e;
+        margin-bottom: 24px;
+      }
+      .s2-trail em {
+        font-style: normal;
+        font-weight: 700;
+        color: var(--text-main);
+      }
+
+      .s2-support-pill {
+        display: inline-block;
+        border: 1.5px solid rgba(232, 128, 10, 0.3);
+        border-radius: 10px;
+        background-color: #fff0d5;
+        padding: 10px 24px;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text-main);
+        margin-bottom: 48px;
+      }
+
+      /* logo strip */
+      .s2-logos {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 24px 36px;
+        padding-top: 36px;
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
+      }
+      .s2-logo-item {
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: #9aa0ae;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+      .s2-logo-item.serif {
+        font-style: italic;
+      }
+
+      /* ── SECTION 3: HOW IT WORKS ── */
+      .s3 {
+        background: var(--white);
+        padding: 80px 20px 90px;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      .s3-inner {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      .s3-header {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(34px, 5vw, 52px);
+        font-weight: 400;
+        line-height: 1.05;
+        letter-spacing: 0.02em;
+        color: var(--text-main);
+        text-align: center;
+        margin-bottom: 44px;
+      }
+
+      .s3-header .accent {
+        color: var(--orange);
+      }
+
+      .s3-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+        margin-bottom: 42px;
+      }
+
+      .s3-card {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        overflow: visible;
+        text-align: center;
+      }
+
+      .s3-diagram {
+        width: 100%;
+        aspect-ratio: 1.32 / 1;
+        background: #fbf1df;
+        border: 1px solid rgba(232, 128, 10, 0.16);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 22px;
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .s3-card-body {
+        padding: 0 10px;
+      }
+      .s3-svg {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+}
+
+.svg-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 7px;
+  font-weight: 800;
+  fill: #1A1E27;
+  letter-spacing: 0.03em;
+}
+
+.svg-center {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 7px;
+  font-weight: 800;
+  fill: #FFFFFF;
+  letter-spacing: 0.03em;
+}
+
+.svg-center-dark {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 7px;
+  font-weight: 800;
+  fill: #1A1E27;
+  letter-spacing: 0.03em;
+}
+
+      .s3-card-title {
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--text-main);
+        margin-bottom: 10px;
+        line-height: 1.35;
+      }
+
+      .s3-card-p {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.65;
+        color: var(--text-muted);
+      }
+
+      .s3-cta-wrap {
+        text-align: center;
+      }
+
+      .s3-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--orange);
+        color: var(--white);
+        font-size: 13px;
+        font-weight: 700;
+        padding: 14px 28px;
+        border-radius: 100px;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          background 0.18s,
+          transform 0.18s;
+      }
+
+      .s3-cta:hover {
+        background: var(--orange-dark);
+        transform: translateY(-2px);
+      }
+
+      /* ── SECTION 4: FOUNDER ── */
+      .s4 {
+        background: var(--cream);
+        padding: 80px 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .s4-inner {
+        max-width: 880px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 60px;
+        align-items: start;
+      }
+
+      .s4-photo-col {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .s4-photo {
+        width: 100%;
+        aspect-ratio: 3/4;
+        background: linear-gradient(150deg, #2a3040 0%, #151a26 100%);
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+      }
+
+      /* placeholder person silhouette */
+      .s4-photo-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(170deg, #2a3040 40%, #1a1e2a 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .s4-photo-placeholder svg {
+        width: 60%;
+        height: 60%;
+        opacity: 0.25;
+        fill: rgba(255, 255, 255, 0.8);
+      }
+      .s4-photo-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.s4-photo-caption strong {
+  display: inline-block;
+  width: fit-content;
+
+  padding: 10px 24px;
+
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 14px;
+
+  border: 2px dashed rgba(0,0,0,0.15);
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.35);
+}
+
+.s4-photo-caption span,
+.s4-photo-caption .generated {
+  display: inline-block;
+  width: fit-content;
+
+  padding: 10px 24px;
+
+  border: 2px dashed rgba(0,0,0,0.15);
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.35);
+
+  font-weight: 600;
+  color: var(--text-muted);
+}
+  
+      .s4-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .s4-headline {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 400;
+        line-height: 1.08;
+        letter-spacing: 0.02em;
+        color: var(--text-main);
+      }
+      .s4-headline .accent {
+        color: var(--orange);
+      }
+
+      .s4-p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.78;
+        color: var(--text-muted);
+      }
+      .s4-p a {
+        color: var(--orange);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      /* ── SECTION 5: TESTIMONIALS ── */
+      .s5 {
+        background: var(--cream);
+        padding: 80px 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .s5-inner {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .s5-header {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(32px, 5vw, 50px);
+        font-weight: 400;
+        line-height: 1.05;
+        letter-spacing: 0.02em;
+        color: var(--text-main);
+        text-align: center;
+        margin-bottom: 8px;
+      }
+      .s5-header .accent {
+        color: var(--orange);
+      }
+
+      .s5-sub {
+        font-size: 16px;
+        color: var(--text-muted);
+        text-align: center;
+        line-height: 1.65;
+        margin-bottom: 40px;
+        max-width: 540px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* chat card carousel */
+      .s5-carousel {
+        position: relative;
+        overflow: hidden;
+      }
+      .s5-track {
+        display: flex;
+        gap: 20px;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .s5-chat-card {
+        min-width: calc(33.333% - 14px);
+        background: var(--white);
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* chat header */
+      .chat-header {
+        background: #f5f5f5;
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .chat-avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--dark-3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--white);
+        flex-shrink: 0;
+      }
+      .chat-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-main);
+      }
+
+      /* chat messages */
+      .chat-body {
+        padding: 16px 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        flex: 1;
+      }
+
+      .chat-bubble {
+        padding: 10px 14px;
+        border-radius: 14px;
+        font-size: 13px;
+        line-height: 1.55;
+        max-width: 85%;
+      }
+      .chat-bubble.user {
+        background: #f0f0f0;
+        color: var(--text-main);
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+      }
+      .chat-bubble.agent {
+        background: var(--dark);
+        color: var(--white);
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+      }
+
+      .chat-agent-label {
+        font-size: 10px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-align: right;
+        margin-top: -4px;
+      }
+
+      /* chat footer */
+      .chat-footer {
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .chat-footer-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--cream-2);
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .chat-footer-name {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-muted);
+      }
+
+      /* carousel dots */
+      .s5-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 24px;
+      }
+      .s5-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: background 0.2s;
+        border: none;
+        padding: 0;
+      }
+      .s5-dot.active {
+        background: var(--orange);
+      }
+
+      .s5-arrows {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .s5-arrow {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(0, 0, 0, 0.15);
+        background: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .s5-arrow:hover {
+        border-color: var(--orange);
+        background: var(--orange);
+      }
+      .s5-arrow:hover svg {
+        stroke: var(--white);
+      }
+      .s5-arrow svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--text-muted);
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* ── SECTION 6: GUARANTEE ── */
+      .s6 {
+        background: var(--dark);
+        padding: 80px 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .s6-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+
+      .s6-left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .s6-big-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(100px, 16vw, 200px);
+        line-height: 0.85;
+        color: var(--orange);
+        letter-spacing: 0.02em;
+      }
+      .s6-num-label {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 28px;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.08em;
+        margin-top: 10px;
+      }
+
+      .s6-right {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .s6-eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--orange);
+      }
+
+      .s6-header {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(34px, 4vw, 52px);
+        color: var(--white);
+        line-height: 1.05;
+        letter-spacing: 0.02em;
+      }
+
+      .s6-p {
+        font-size: 16px;
+        line-height: 1.78;
+        color: var(--text-light);
+      }
+      .s6-p strong {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+      }
+
+      /* ── SECTION 7: FAQ ── */
+      .s7 {
+        background: var(--cream);
+        padding: 80px 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .s7-inner {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .s7-eyebrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 12px;
+      }
+      .s7-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(34px, 5vw, 50px);
+        color: var(--text-main);
+        text-align: center;
+        line-height: 1.05;
+        letter-spacing: 0.02em;
+        margin-bottom: 10px;
+      }
+      .s7-title .accent {
+        color: var(--orange);
+      }
+      .s7-sub {
+        font-size: 15px;
+        color: var(--text-muted);
+        text-align: center;
+        line-height: 1.65;
+        margin-bottom: 48px;
+      }
+
+      .s7-faq {
+        display: flex;
+        flex-direction: column;
+      }
+      .s7-item {
+        border-top: 1px solid rgba(0, 0, 0, 0.09);
+      }
+      .s7-item:last-child {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+      }
+
+      .s7-trigger {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 24px 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .s7-num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--text-main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--white);
+        flex-shrink: 0;
+        transition: background 0.2s;
+      }
+      .s7-trigger.open .s7-num {
+        background: var(--orange);
+      }
+
+      .s7-question {
+        flex: 1;
+        font-size: 17px;
+        font-weight: 500;
+        color: var(--text-main);
+        line-height: 1.35;
+      }
+      .s7-trigger.open .s7-question {
+        color: var(--orange);
+      }
+
+      .s7-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        flex-shrink: 0;
+        transition:
+          transform 0.3s,
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .s7-trigger.open .s7-icon {
+        transform: rotate(45deg);
+        border-color: var(--orange);
+        color: var(--orange);
+      }
+
+      .s7-panel {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition:
+          max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.28s;
+      }
+      .s7-panel.open {
+        max-height: 360px;
+        opacity: 1;
+      }
+      .s7-panel-inner {
+        padding: 0 0 28px 42px;
+      }
+      .s7-answer {
+        font-size: 15px;
+        line-height: 1.8;
+        color: var(--text-muted);
+      }
+
+      /* ── SECTION 8: METRICS / SCARCITY ── */
+      .s8 {
+        background: var(--cream);
+        padding: 80px 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        text-align: center;
+      }
+      .s8-inner {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .s8-header {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(34px, 5vw, 52px);
+        color: var(--text-main);
+        line-height: 1.05;
+        letter-spacing: 0.02em;
+        margin-bottom: 40px;
+      }
+      .s8-header .accent {
+        color: var(--orange);
+      }
+
+      .s8-metrics {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        border: 1px solid rgba(0, 0, 0, 0.09);
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 60px;
+        background: var(--white);
+      }
+      .s8-metric {
+        padding: 32px 24px;
+        border-right: 1px solid rgba(0, 0, 0, 0.09);
+      }
+      .s8-metric:last-child {
+        border-right: none;
+      }
+      .s8-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 64px;
+        color: var(--orange);
+        line-height: 0.9;
+        margin-bottom: 10px;
+      }
+      .s8-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-muted);
+        line-height: 1.4;
+      }
+
+      .s8-guarantee {
+        max-width: 580px;
+        margin: 0 auto;
+      }
+      .s8-g-eyebrow {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 14px;
+      }
+      .s8-g-text {
+        font-size: 16px;
+        line-height: 1.78;
+        color: var(--text-muted);
+        margin-bottom: 28px;
+      }
+      .s8-g-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--orange);
+        color: var(--white);
+        font-size: 16px;
+        font-weight: 700;
+        padding: 16px 36px;
+        border-radius: 100px;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(232, 128, 10, 0.35);
+        transition: background 0.18s;
+      }
+      .s8-g-cta:hover {
+        background: var(--orange-dark);
+      }
+
+      /* ── SECTION 9: FINAL CTA ── */
+      .s9 {
+        background: var(--dark-2);
+        padding: 80px 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .s9-inner {
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      .s9-header {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(38px, 6vw, 62px);
+        color: var(--white);
+        line-height: 1.05;
+        letter-spacing: 0.02em;
+        margin-bottom: 32px;
+      }
+      .s9-header .accent {
+        color: var(--orange);
+      }
+
+      .s9-p {
+        font-size: 17px;
+        line-height: 1.78;
+        color: var(--text-light);
+        margin-bottom: 20px;
+      }
+
+      .s9-cta-zone {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        margin: 36px 0;
+      }
+      .s9-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--orange);
+        color: var(--white);
+        font-size: 17px;
+        font-weight: 700;
+        padding: 18px 40px;
+        border-radius: 100px;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 6px 28px rgba(232, 128, 10, 0.4);
+        transition:
+          background 0.18s,
+          transform 0.18s;
+      }
+      .s9-btn:hover {
+        background: var(--orange-dark);
+        transform: translateY(-2px);
+      }
+      .s9-note {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      /* expandable */
+      .s9-expand-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--orange);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-color: rgba(232, 128, 10, 0.4);
+      }
+      .s9-expand-btn:hover {
+        text-decoration-color: var(--orange);
+      }
+      .s9-chevron {
+        transition: transform 0.3s;
+      }
+      .s9-expand-btn.open .s9-chevron {
+        transform: rotate(180deg);
+      }
+
+      .s9-expand-panel {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition:
+          max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.3s;
+      }
+      .s9-expand-panel.open {
+        max-height: 600px;
+        opacity: 1;
+      }
+      .s9-expand-inner {
+        margin-top: 24px;
+        background: rgba(232, 128, 10, 0.06);
+        border: 1px solid rgba(232, 128, 10, 0.12);
+        border-radius: 14px;
+        padding: 28px 32px;
+      }
+      .s9-item {
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(232, 128, 10, 0.1);
+        font-size: 15px;
+        line-height: 1.72;
+        color: rgba(234, 236, 240, 0.6);
+      }
+      .s9-item:first-child {
+        padding-top: 0;
+      }
+      .s9-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .s9-item strong {
+        color: var(--orange);
+        font-weight: 700;
+      }
+
+      /* ── FOOTER ── */
+      .ftr {
+        background: #080c14;
+        padding: 40px 20px 32px;
+        border-top: 1px solid rgba(232, 128, 10, 0.08);
+      }
+      .ftr-inner {
+        max-width: 1060px;
+        margin: 0 auto;
+      }
+      .ftr-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+      .ftr-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .ftr-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+      }
+      .ftr-tagline {
+        font-size: 12px;
+        color: rgba(251, 202, 129, 0.5);
+      }
+      .ftr-links {
+        display: flex;
+        gap: 24px;
+      }
+      .ftr-link {
+        font-size: 12px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.25);
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .ftr-link:hover {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .ftr-legal {
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+        font-size: 11px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.18);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 767px) {
+        .hdr {
+          padding: 0 16px;
+        }
+        .hdr-link {
+          display: none;
+        }
+
+        .s1 {
+          padding: 88px 16px 48px;
+        }
+        .s1-annotation {
+          display: none;
+        }
+
+        .s2 {
+          padding: 56px 16px 48px;
+        }
+
+        .s3 {
+          padding: 56px 16px;
+        }
+        .s3-cards {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        .s4 {
+          padding: 56px 16px;
+        }
+        .s4-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .s4-photo {
+          aspect-ratio: 3/2;
+        }
+
+        .s5 {
+          padding: 56px 16px;
+        }
+        .s5-chat-card {
+          min-width: calc(100% - 0px);
+        }
+
+        .s6 {
+          padding: 56px 16px;
+        }
+        .s6-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .s6-left {
+          flex-direction: row;
+          align-items: baseline;
+          gap: 12px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+          padding-bottom: 32px;
+        }
+
+        .s7 {
+          padding: 56px 16px;
+        }
+
+        .s8 {
+          padding: 56px 16px;
+        }
+        .s8-metrics {
+          grid-template-columns: 1fr;
+        }
+        .s8-metric {
+          border-right: none;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+        }
+        .s8-metric:last-child {
+          border-bottom: none;
+        }
+
+        .s9 {
+          padding: 56px 16px;
+        }
+        .s9-cta-zone {
+          align-items: center;
+        }
+        .s9-btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .ftr-top {
+          flex-direction: column;
+          gap: 16px;
+        }
+        .ftr-links {
+          flex-wrap: wrap;
+        }
+      }
+
+      @media (min-width: 768px) and (max-width: 1079px) {
+        .s3-cards {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        .s5-chat-card {
+          min-width: calc(50% - 10px);
+        }
+      }
+
+      /* focus */
+      :focus-visible {
+        outline: 2px solid var(--orange);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+      :focus:not(:focus-visible) {
+        outline: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="hdr" id="site-hdr">
+      <div class="hdr-inner">
+        <a href="#" class="hdr-logo">
+          <span class="amz">AMZ</span><span class="expand">EXPAND</span>
+        </a>
+        <nav class="hdr-nav">
+          <a href="#how" class="hdr-link">How It Works</a>
+          <a href="#audit" class="hdr-cta">Book Your Free Audit</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- S1: HERO -->
+    <section class="s1" id="audit">
+      <div class="s1-bg-lines"></div>
+      <div class="s1-inner">
+        <h1 class="s1-headline">
+          Most Accounts We Audit Are Losing
+          <span class="money">$8,000 to $50,000</span>
+          Every Month To Three Fixable Problems.
+        </h1>
+
+        <p class="s1-sub">
+          Not the product. The advertising, listings, and catalog have stopped
+          working together. Watch the video to see what those problems are, then
+          let us show you which ones are in yours.
+        </p>
+
+        <div class="s1-vsl-wrap">
+          <!-- annotation -->
+          <div class="s1-annotation">
+            <span class="s1-annotation-text">See It In Action</span>
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path
+                d="M8 6 C14 10 20 18 20 24"
+                stroke="#E8800A"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <path
+                d="M16 22 L20 24 L18 20"
+                stroke="#E8800A"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+              />
+            </svg>
+          </div>
+
+          <!-- video thumb -->
+          <div
+            class="s1-thumb"
+            role="button"
+            tabindex="0"
+            aria-label="Play video"
+          >
+            <!-- orange background with arrow chart -->
+            <div class="s1-thumb-chart">
+              <svg
+                viewBox="0 0 400 220"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice"
+              >
+                <polygon
+                  points="20,200 120,150 200,100 280,60 380,10 380,220 20,220"
+                  fill="rgba(0,0,0,0.15)"
+                />
+                <polyline
+                  points="20,200 120,150 200,100 280,60 380,10"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.5)"
+                  stroke-width="3"
+                  stroke-linejoin="round"
+                />
+                <!-- arrow head -->
+                <polygon
+                  points="370,2 388,18 376,8"
+                  fill="rgba(255,255,255,0.7)"
+                />
+              </svg>
+            </div>
+
+            <div class="s1-thumb-watermark">AMZ</div>
+
+            <!-- "IN 90 DAYS" text with play button inline -->
+            <div class="s1-thumb-text">
+              IN 90
+              <!-- <span class="play-inline">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </span> -->
+              DAYS
+            </div>
+          </div>
+
+          <!-- KPI chip -->
+          <div class="s1-kpi">
+            <div class="s1-kpi-recovered">Recovered</div>
+            <div class="s1-kpi-value">$24k</div>
+            <div class="s1-kpi-label">AVG. MONTHLY BLEED<br />RECOVERED</div>
+          </div>
+        </div>
+
+        <p class="s1-scarcity">2 Audit Slots Left For This Week</p>
+
+        <a href="#" class="s1-cta">
+          Book Your Free Amazon Audit
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9h12M10 4l5 5-5 5" />
+          </svg>
+        </a>
+
+        <div class="s1-trust">
+          <span class="s1-trust-item">Free Audit</span>
+          <span class="s1-sep"></span>
+          <span class="s1-trust-item">No Commitment</span>
+          <span class="s1-sep"></span>
+          <span class="s1-trust-item">48 Hour Turnaround</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- S2: PROOF STAT -->
+    <section class="s2" id="proof">
+      <div class="s2-inner">
+        <!-- Amazon logo text -->
+        <div class="s2-amazon-logo">
+          <svg viewBox="0 0 120 36" xmlns="http://www.w3.org/2000/svg">
+            <text
+              x="0"
+              y="28"
+              font-family="Arial, sans-serif"
+              font-size="30"
+              font-weight="700"
+              fill="#232F3E"
+              letter-spacing="-1"
+            >
+              amazon
+            </text>
+            <!-- smile arrow -->
+            <path
+              d="M8 32 Q60 40 112 32"
+              fill="none"
+              stroke="#FF9900"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M108 30 L113 32 L109 35"
+              fill="none"
+              stroke="#FF9900"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+
+        <p class="s2-lead">
+          Across <strong>200+</strong> accounts audited, sellers recovered an
+          average of
+        </p>
+        <span class="s2-number" id="s2-counter">$0</span>
+        <p class="s2-trail">in the <em>first 90 days.</em></p>
+
+        <div class="s2-support-pill">
+          That is what the audit finds. Before you spend a dollar.
+        </div>
+
+        <!-- logo strip -->
+        <div class="s2-logos">
+          <span class="s2-logo-item">FORM</span>
+          <span class="s2-logo-item">FLUSNOOZE</span>
+          <span class="s2-logo-item">MAESTRO</span>
+          <span class="s2-logo-item">SOLEGRIPZ</span>
+          <span class="s2-logo-item">THIMTEC</span>
+          <span class="s2-logo-item">BRUSHEE</span>
+          <span class="s2-logo-item serif">Luhxe</span>
+          <span class="s2-logo-item">CARDIOLOGY</span>
+          <span class="s2-logo-item serif">Strawberry &amp; Co</span>
+          <span class="s2-logo-item">ECLIPSEOPTICS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- S3: HOW IT WORKS -->
+
+<section class="s3" id="how">
+  <div class="s3-inner">
+    <h2 class="s3-header">
+      IF YOU SKIPPED THE VIDEO, HERE IS
+      <span class="accent">WHAT IT SAYS.</span>
+    </h2>
+
+    <div class="s3-cards">
+      <!-- Card 1: Venn -->
+      <div class="s3-card">
+        <div class="s3-diagram">
+          <svg class="s3-svg" viewBox="0 0 220 150">
+            <circle cx="110" cy="50" r="38" fill="#F2C94C" opacity="0.9" />
+            <circle cx="83" cy="86" r="38" fill="#E8800A" opacity="0.85" />
+            <circle cx="137" cy="86" r="38" fill="#F5A623" opacity="0.75" />
+
+            <text x="110" y="48" text-anchor="middle" class="svg-label">PPC</text>
+            <text x="53" y="125" text-anchor="middle" class="svg-label">LISTING</text>
+            <text x="166" y="125" text-anchor="middle" class="svg-label">CATALOG</text>
+
+            <text x="110" y="83" text-anchor="middle" class="svg-center">UNIFIED</text>
+            <text x="110" y="94" text-anchor="middle" class="svg-center">DATA</text>
+          </svg>
+        </div>
+
+        <div class="s3-card-body">
+          <h3 class="s3-card-title">Not the product. The system.</h3>
+          <p class="s3-card-p">
+            Most sellers spending too much on ads are not losing because of
+            a bad product. They are losing because their advertising,
+            listings, and catalog have stopped working as one system.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: Donut -->
+      <div class="s3-card">
+        <div class="s3-diagram">
+          <svg class="s3-svg" viewBox="0 0 220 150">
+            <circle cx="110" cy="68" r="44" fill="none" stroke="#F2C94C" stroke-width="24"
+              stroke-dasharray="90 210" transform="rotate(-90 110 68)" />
+            <circle cx="110" cy="68" r="44" fill="none" stroke="#E8800A" stroke-width="24"
+              stroke-dasharray="100 200" stroke-dashoffset="-90" transform="rotate(-90 110 68)" />
+            <circle cx="110" cy="68" r="44" fill="none" stroke="#C26100" stroke-width="24"
+              stroke-dasharray="105 195" stroke-dashoffset="-190" transform="rotate(-90 110 68)" />
+
+            <circle cx="110" cy="68" r="24" fill="#FBF1DF" />
+
+            <text x="110" y="66" text-anchor="middle" class="svg-center-dark">ONE</text>
+            <text x="110" y="77" text-anchor="middle" class="svg-center-dark">SYSTEM</text>
+
+            <circle cx="70" cy="126" r="4" fill="#F2C94C" />
+            <text x="79" y="129" class="svg-label">ACOS</text>
+
+            <circle cx="110" cy="126" r="4" fill="#C26100" />
+            <text x="119" y="129" class="svg-label">BSR</text>
+
+            <circle cx="148" cy="126" r="4" fill="#E8800A" />
+            <text x="157" y="129" class="svg-label">CVR</text>
+          </svg>
+        </div>
+
+        <div class="s3-card-body">
+          <h3 class="s3-card-title">Structural problem. Structural fix.</h3>
+          <p class="s3-card-p">
+            It is a structural problem across the whole account — and it has
+            a structural fix. Not adjusting one thing in isolation.
+            Rebuilding the connection between all three so they work
+            together.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3: Leak -->
+      <div class="s3-card">
+        <div class="s3-diagram">
+          <svg class="s3-svg" viewBox="0 0 220 150">
+            <circle cx="110" cy="56" r="44" fill="#E8800A" opacity="0.9" />
+            <path d="M110 56 L80 122 H140 Z" fill="#FBF1DF" />
+
+            <path d="M110 56 L94 122" stroke="#E8800A" stroke-width="3" />
+            <path d="M110 56 L110 122" stroke="#E8800A" stroke-width="3" />
+            <path d="M110 56 L126 122" stroke="#E8800A" stroke-width="3" />
+
+            <text x="78" y="136" text-anchor="middle" class="svg-label">LEAK 1</text>
+            <text x="110" y="136" text-anchor="middle" class="svg-label">LEAK 2</text>
+            <text x="142" y="136" text-anchor="middle" class="svg-label">LEAK 3</text>
+          </svg>
+        </div>
+
+        <div class="s3-card-body">
+          <h3 class="s3-card-title">See the cost before you commit.</h3>
+          <p class="s3-card-p">
+            Before you commit to anything, we show you exactly what is
+            broken and what fixing it is worth. The audit takes 48 hours,
+            costs nothing, and gives you a dollar-value estimate of what
+            each problem is costing you every month.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="s3-cta-wrap">
+      <a href="#" class="s3-cta">
+        Book Your Free Amazon Audit
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 8h10M9 4l4 4-4 4" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+    <!-- S4: FOUNDER -->
+    <section class="s4">
+      <div class="s4-inner">
+        <div class="s4-photo-col">
+          <div class="s4-photo">
+            <div class="s4-photo-placeholder">
+              <!-- person silhouette -->
+              <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="30" r="22" />
+                <path d="M10 120 C10 80 90 80 90 120" />
+              </svg>
+            </div>
+          </div>
+          <div class="s4-photo-caption">
+            <strong>Founder, AMZexpand</strong>
+            <span>500+ Millions Generated</span>
+          </div>
+        </div>
+
+        <div class="s4-content">
+          <h2 class="s4-headline">
+            I BUILT AMZEXPAND TO GIVE OTHER SELLERS THE SYSTEM I HAD TO FIGURE
+            OUT <span class="accent">THE HARD WAY.</span>
+          </h2>
+          <p class="s4-p">
+            I did not read about Amazon and build an agency around it. I built
+            <a href="#">Brushee from zero to multi-million dollars</a> on Amazon
+            myself. I ran the advertising. I fixed the listings. I watched
+            ranking move when the system worked and stagnate when it did not.
+          </p>
+          <p class="s4-p">
+            When you work with us you are not getting a team that manages ads in
+            isolation. You are getting operators who have built and run accounts
+            from the inside — who know what broken looks like because they have
+            fixed hundreds of them.
+          </p>
+          <p class="s4-p">
+            That is why we back every engagement with a 90-day performance
+            guarantee. Not because it sounds good. Because we already know what
+            we are going to find in your account.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- S5: TESTIMONIALS (chat cards) -->
+    <section class="s5">
+      <div class="s5-inner">
+        <h2 class="s5-header">
+          WHAT CHANGES WHEN THE <span class="accent">SYSTEM WORKS</span>
+        </h2>
+        <p class="s5-sub">
+          These are accounts we audited, fixed, and handed back to sellers who
+          now know exactly what their account is doing every week.
+        </p>
+
+        <div class="s5-carousel">
+          <div class="s5-track" id="s5-track">
+            <!-- Chat card 1 -->
+            <div class="s5-chat-card">
+              <div class="chat-header">
+                <div class="chat-avatar">JL</div>
+                <span class="chat-name">Jasmine L.</span>
+              </div>
+              <div class="chat-body">
+                <div class="chat-bubble user">
+                  Hey! Just wanted to say — our PPC sales have doubled this
+                  month. I honestly didn't expect results this fast!
+                </div>
+                <div
+                  style="
+                    align-self: flex-end;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+                  "
+                >
+                  <div class="chat-agent-label">AMZ EXPAND TEAM</div>
+                  <div class="chat-bubble agent">
+                    We love to hear that, Jasmine! Your brand has huge potential
+                    — glad we could help unlock it early. Let's keep the
+                    momentum going 🚀
+                  </div>
+                </div>
+              </div>
+              <div class="chat-footer">
+                <div class="chat-footer-avatar"></div>
+                <span class="chat-footer-name">Jasmine L.</span>
+              </div>
+            </div>
+
+            <!-- Chat card 2 -->
+            <div class="s5-chat-card">
+              <div class="chat-header">
+                <div class="chat-avatar">MT</div>
+                <span class="chat-name">Marcus T.</span>
+              </div>
+              <div class="chat-body">
+                <div class="chat-bubble user">
+                  I really appreciate how hands-on you guys are. This is the
+                  first time I've felt like someone actually understands my
+                  business.
+                </div>
+                <div
+                  style="
+                    align-self: flex-end;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+                  "
+                >
+                  <div class="chat-agent-label">AMZ EXPAND TEAM</div>
+                  <div class="chat-bubble agent">
+                    Thanks, Marcus — your wins are our wins. We're in your
+                    corner every step of the way! 💪
+                  </div>
+                </div>
+              </div>
+              <div class="chat-footer">
+                <div class="chat-footer-avatar"></div>
+                <span class="chat-footer-name">Marcus T.</span>
+              </div>
+            </div>
+
+            <!-- Chat card 3 -->
+            <div class="s5-chat-card">
+              <div class="chat-header">
+                <div class="chat-avatar">RH</div>
+                <span class="chat-name">Reece H.</span>
+              </div>
+              <div class="chat-body">
+                <div class="chat-bubble user">
+                  Wait, are you telling me we're finally profitable on ads?! I
+                  could cry LOL. You guys are unreal!
+                </div>
+                <div
+                  style="
+                    align-self: flex-end;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+                  "
+                >
+                  <div class="chat-agent-label">AMZ EXPAND TEAM</div>
+                  <div class="chat-bubble agent">
+                    Happy tears are the best kind! Yes — you're profitable and
+                    scaling. Let's level up even more! 🎯
+                  </div>
+                </div>
+              </div>
+              <div class="chat-footer">
+                <div class="chat-footer-avatar"></div>
+                <span class="chat-footer-name">Reece H.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="s5-dots">
+          <button
+            class="s5-dot active"
+            data-idx="0"
+            aria-label="Slide 1"
+          ></button>
+          <button class="s5-dot" data-idx="1" aria-label="Slide 2"></button>
+        </div>
+
+        <div class="s5-arrows">
+          <button class="s5-arrow" id="s5-prev" aria-label="Previous">
+            <svg viewBox="0 0 16 16"><path d="M10 4l-4 4 4 4" /></svg>
+          </button>
+          <button class="s5-arrow" id="s5-next" aria-label="Next">
+            <svg viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" /></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- S6: GUARANTEE -->
+    <section class="s6">
+      <div class="s6-inner">
+        <div class="s6-left">
+          <span class="s6-big-num">90</span>
+          <span class="s6-num-label">Day Guarantee</span>
+        </div>
+
+        <div class="s6-right">
+          <span class="s6-eyebrow">90-Day Performance Guarantee</span>
+          <h2 class="s6-header">WE DO NOT WIN UNLESS YOU DO</h2>
+          <p class="s6-p">
+            Every engagement runs under a 90-day performance guarantee. We agree
+            on the metrics before we touch anything. If we do not move them
+            within 90 days, we keep working until we do. For free.
+            <strong>No fine print. No renegotiation.</strong>
+          </p>
+          <p class="s6-p">
+            We offer this because we already know what we are going to find in
+            your account. The guarantee is not a sales tactic. It is the logical
+            consequence of knowing the system well enough to fix it.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- S7: FAQ -->
+    <section class="s7">
+      <div class="s7-inner">
+        <div class="s7-eyebrow">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="6" cy="6" r="6" />
+          </svg>
+          Common Questions
+        </div>
+        <h2 class="s7-title">BEFORE YOU <span class="accent">BOOK</span></h2>
+        <p class="s7-sub">
+          Most sellers who book the audit come in carrying one of three
+          concerns. Here is what happens to each of them.
+        </p>
+
+        <div class="s7-faq">
+          <div class="s7-item">
+            <button class="s7-trigger" data-panel="p1">
+              <span class="s7-num">1</span>
+              <span class="s7-question"
+                >I have tried agencies before and it did not work.</span
+              >
+              <span class="s7-icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M2 6h8M6 2v8"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+            </button>
+            <div class="s7-panel" id="p1">
+              <div class="s7-panel-inner">
+                <p class="s7-answer">
+                  We hear this on almost every first call. Most agencies are
+                  built around the appearance of work — busy dashboards, weekly
+                  reports, vague answers. The audit is how we prove we are
+                  different before you spend a dollar. You see exactly what is
+                  broken, what fixing it is worth, and how we approach it.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="s7-item">
+            <button class="s7-trigger" data-panel="p2">
+              <span class="s7-num">2</span>
+              <span class="s7-question"
+                >I do not want to be locked into a contract.</span
+              >
+              <span class="s7-icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M2 6h8M6 2v8"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+            </button>
+            <div class="s7-panel" id="p2">
+              <div class="s7-panel-inner">
+                <p class="s7-answer">
+                  The audit has no commitment attached. If you move forward, the
+                  terms are straightforward — no lock-ins structured to make
+                  leaving painful. We keep clients because the account moves,
+                  not because the contract makes leaving difficult.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="s7-item">
+            <button class="s7-trigger" data-panel="p3">
+              <span class="s7-num">3</span>
+              <span class="s7-question"
+                >I do not have the time to onboard a new agency.</span
+              >
+              <span class="s7-icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M2 6h8M6 2v8"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+            </button>
+            <div class="s7-panel" id="p3">
+              <div class="s7-panel-inner">
+                <p class="s7-answer">
+                  The audit takes 48 hours on our side. Your involvement is one
+                  conversation. After that we work inside the account — you do
+                  not manage us. Every Monday you get one page showing what
+                  changed and why. That is the only time it asks from you.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- S8: METRICS / SCARCITY -->
+    <section class="s8">
+      <div class="s8-inner">
+        <h2 class="s8-header">
+          MEASURABLE RESULTS, OR WE
+          <span class="accent">KEEP WORKING FREE.</span>
+        </h2>
+
+        <div class="s8-metrics">
+          <div class="s8-metric">
+            <div class="s8-num">90</div>
+            <div class="s8-label">Day performance<br />window</div>
+          </div>
+          <div class="s8-metric">
+            <div class="s8-num">3</div>
+            <div class="s8-label">New accounts taken<br />per month</div>
+          </div>
+          <div class="s8-metric">
+            <div class="s8-num">$0</div>
+            <div class="s8-label">Cost if we don't<br />hit the targets</div>
+          </div>
+        </div>
+
+        <div class="s8-guarantee">
+          <span class="s8-g-eyebrow">THE GUARANTEE</span>
+          <p class="s8-g-text">
+            We fix the system or we keep working until we do. No conditions. No
+            exceptions. If your metrics have not moved in 90 days, we continue
+            at no cost until they do.
+          </p>
+
+          <span class="s8-g-eyebrow">THE COMMITMENT</span>
+          <p class="s8-g-text" style="margin-bottom: 32px">
+            We take three new accounts per month. Not as a tactic — because that
+            is the number we can take on without quality slipping for anyone
+            already inside.
+          </p>
+
+          <a href="#" class="s8-g-cta">
+            Book Your Free Amazon Audit
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- S9: FINAL CTA -->
+    <section class="s9">
+      <div class="s9-inner">
+        <h2 class="s9-header">
+          SEE WHAT IS ACTUALLY <span class="accent">COSTING YOU</span>
+        </h2>
+
+        <p class="s9-p">
+          The audit covers wasted ad spend, listings that are not converting,
+          ranking gaps, and catalog issues. For each one you get a dollar-value
+          estimate of what it is costing you every month. Most accounts have at
+          least two or three running at the same time.
+        </p>
+        <p class="s9-p">
+          48 hours. No cost. No commitment. A complete picture of your account
+          before you decide anything.
+        </p>
+
+        <div class="s9-cta-zone">
+          <a href="#" class="s9-btn">
+            Book Your Free Audit
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 9h12M10 4l5 5-5 5" />
+            </svg>
+          </a>
+          <span class="s9-note"
+            >Two minutes to book. No card. No obligation.</span
+          >
+        </div>
+
+        <button class="s9-expand-btn" id="s9-expand">
+          Want to see exactly what the audit covers before you book?
+          <svg
+            class="s9-chevron"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+          >
+            <path
+              d="M4 6l4 4 4-4"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+
+        <div class="s9-expand-panel" id="s9-panel">
+          <div class="s9-expand-inner">
+            <div class="s9-item">
+              <strong>Your ad spend</strong> — where it is going, what it is
+              returning, and where it is being wasted.
+            </div>
+            <div class="s9-item">
+              <strong>Your listings</strong> — whether they are converting the
+              traffic your ads are buying and what is causing them to lose
+              sales.
+            </div>
+            <div class="s9-item">
+              <strong>Your ranking</strong> — where your products sit
+              organically and what is stopping them from moving.
+            </div>
+            <div class="s9-item">
+              <strong>Your catalog</strong> — whether the account structure is
+              supporting your growth or working against it.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="ftr">
+      <div class="ftr-inner">
+        <div class="ftr-top">
+          <div class="ftr-brand">
+            <a href="#" class="ftr-logo">AMZ EXPAND</a>
+            <span class="ftr-tagline"
+              >Built by Amazon sellers. Run for Amazon sellers.</span
+            >
+          </div>
+          <nav class="ftr-links">
+            <a href="#" class="ftr-link">Privacy Policy</a>
+            <a href="#" class="ftr-link">Terms of Service</a>
+          </nav>
+        </div>
+        <p class="ftr-legal">© 2025 AMZ Expand. All rights reserved.</p>
+        <p class="ftr-legal" style="margin-top: 6px">
+          Results shown reflect individual client accounts. Outcomes vary based
+          on account history, product category, and market conditions.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      /* ── Header scroll ── */
+      (function () {
+        var hdr = document.getElementById("site-hdr");
+        window.addEventListener(
+          "scroll",
+          function () {
+            hdr.classList.toggle("scrolled", window.scrollY > 40);
+          },
+          { passive: true },
+        );
+      })();
+
+      /* ── S2 counter animation ── */
+      (function () {
+        var el = document.getElementById("s2-counter");
+        if (!el) return;
+        var target = 50000,
+          duration = 2200,
+          started = false;
+
+        function easeOut(t) {
+          return 1 - Math.pow(1 - t, 3);
+        }
+        function fmt(n) {
+          var s = "" + Math.floor(n),
+            r = "";
+          for (var i = 0; i < s.length; i++) {
+            if (i > 0 && (s.length - i) % 3 === 0) r += ",";
+            r += s[i];
+          }
+          return "$" + r;
+        }
+
+        new IntersectionObserver(
+          function (entries) {
+            if (!entries[0].isIntersecting || started) return;
+            started = true;
+            var start = null;
+            requestAnimationFrame(function tick(ts) {
+              if (!start) start = ts;
+              var p = Math.min((ts - start) / duration, 1);
+              el.textContent = fmt(target * easeOut(p));
+              if (p < 1) requestAnimationFrame(tick);
+            });
+          },
+          { threshold: 0.3 },
+        ).observe(el);
+      })();
+
+      /* ── S5 carousel ── */
+      (function () {
+        var track = document.getElementById("s5-track");
+        var dots = document.querySelectorAll(".s5-dot");
+        var prev = document.getElementById("s5-prev");
+        var next = document.getElementById("s5-next");
+        if (!track) return;
+
+        var idx = 0;
+        var cards = track.querySelectorAll(".s5-chat-card");
+        var total = cards.length;
+        var perView =
+          window.innerWidth < 768 ? 1 : window.innerWidth < 1080 ? 2 : 3;
+
+        function update() {
+          perView =
+            window.innerWidth < 768 ? 1 : window.innerWidth < 1080 ? 2 : 3;
+          var maxIdx = Math.max(0, total - perView);
+          idx = Math.min(idx, maxIdx);
+          var cardW = cards[0].getBoundingClientRect().width;
+          var gap = 20;
+          track.style.transform = "translateX(-" + idx * (cardW + gap) + "px)";
+          dots.forEach(function (d, i) {
+            d.classList.toggle("active", i === idx);
+          });
+        }
+
+        prev.addEventListener("click", function () {
+          idx = Math.max(0, idx - 1);
+          update();
+        });
+        next.addEventListener("click", function () {
+          var maxIdx = Math.max(0, total - perView);
+          idx = Math.min(maxIdx, idx + 1);
+          update();
+        });
+        dots.forEach(function (d) {
+          d.addEventListener("click", function () {
+            idx = +d.dataset.idx;
+            update();
+          });
+        });
+
+        window.addEventListener("resize", update, { passive: true });
+      })();
+
+      /* ── S7 FAQ accordion ── */
+      (function () {
+        var triggers = document.querySelectorAll(".s7-trigger");
+        triggers.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var panelId = btn.dataset.panel;
+            var panel = document.getElementById(panelId);
+            var isOpen = btn.classList.contains("open");
+
+            // close all
+            triggers.forEach(function (b) {
+              b.classList.remove("open");
+              var p = document.getElementById(b.dataset.panel);
+              if (p) p.classList.remove("open");
+            });
+
+            if (!isOpen) {
+              btn.classList.add("open");
+              if (panel) panel.classList.add("open");
+            }
+          });
+        });
+        // open first by default
+        triggers[0] && triggers[0].click();
+      })();
+
+      /* ── S9 expandable ── */
+      (function () {
+        var btn = document.getElementById("s9-expand");
+        var panel = document.getElementById("s9-panel");
+        if (!btn || !panel) return;
+        btn.addEventListener("click", function () {
+          var open = btn.classList.toggle("open");
+          panel.classList.toggle("open", open);
+          btn.setAttribute("aria-expanded", open);
+        });
+      })();
+    </script>
+  </body>
+</html>
