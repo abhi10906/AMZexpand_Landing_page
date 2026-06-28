@@ -31,9 +31,6 @@ The objective of this project was to recreate the provided Figma design as close
 * Good user experience
 * Front-end best practices
 
-## Screenshots
-
-Add screenshots of the landing page here.
 
 ## Installation
 
